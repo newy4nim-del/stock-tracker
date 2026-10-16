@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -14,19 +15,61 @@
 
     <div class="container">
 
+        <!-- Шапка и поиск -->
+
         <header>
             <h1>Stock Tracker</h1>
 
             <div class="search">
-                <input id="tickerInput" type="text" placeholder="Введите тикер...">
+                <input
+                    id="tickerInput"
+                    type="text"
+                    placeholder="Введите тикер..."
+                    autocomplete="off"
+                >
 
-                <button id="searchButton">Найти</button>
+                <button id="searchButton">
+                    Найти
+                </button>
             </div>
         </header>
 
 
-        <main>
+        <!-- История поисков -->
 
+        <section class="history-section">
+            <h3>Последние поиски</h3>
+
+            <div
+                id="searchHistory"
+                class="search-history"
+            >
+                <span class="history-empty">
+                    История пока пуста
+                </span>
+            </div>
+        </section>
+
+
+        <!-- Избранное -->
+
+        <section class="favorites-section">
+            <h3>Избранное</h3>
+
+            <div
+                id="favoritesList"
+                class="search-history"
+            >
+                <span class="history-empty">
+                    Добавь первую акцию ⭐
+                </span>
+            </div>
+        </section>
+
+
+        <!-- Карточка акции -->
+
+        <main>
             <div class="stock-card">
 
                 <div class="stock-header">
@@ -36,44 +79,85 @@
                         <p>SBER</p>
                     </div>
 
-                    <button>☆</button>
+                    <button
+                        id="favoriteButton"
+                        title="Добавить в избранное"
+                        aria-label="Добавить в избранное"
+                    >
+                        ☆
+                    </button>
 
                 </div>
 
+
+                <!-- Цена и изменение -->
 
                 <div class="stock-price">
-
-                    <span>342.15 ₽</span>
-
-                    <span class="positive">
-                        +2.34%
-                    </span>
-
+                    <span id="stockPrice">—</span>
+                    <span id="stockChange">—</span>
                 </div>
+
+                <p
+                    id="periodLabel"
+                    class="period-label"
+                >
+                    Изменение за день
+                </p>
+
+
+                <!-- График -->
 
                 <div class="chart-container">
-
                     <canvas id="stockChart"></canvas>
-
                 </div>
 
+                <p class="chart-hint">
+                    Зажми левую кнопку мыши и двигай график влево или вправо.
+                </p>
+
+
+                <!-- Периоды графика -->
 
                 <div class="periods">
 
-                    <button>1D</button>
-                    <button>1W</button>
-                    <button>1M</button>
-                    <button>1Y</button>
+                    <button
+                        class="active"
+                        data-period="1D"
+                    >
+                        1D
+                    </button>
+
+                    <button data-period="1W">
+                        1W
+                    </button>
+
+                    <button data-period="1M">
+                        1M
+                    </button>
+
+                    <button data-period="1Y">
+                        1Y
+                    </button>
 
                 </div>
 
             </div>
-
         </main>
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Библиотеки графика -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.2.0/dist/chartjs-plugin-zoom.min.js"></script>
+
+
+    <!-- Логика приложения -->
+
     <script src="script.js"></script>
 
 </body>
